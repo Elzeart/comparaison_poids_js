@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Version deroulant</title>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <!-- Ci-dessous le script qui necessite pas de CDN -->
+    <!-- <script type="text/javascript" src="papaparse.min.js"></script> -->
+  </head>
+  <style>
+  
+
+    #content{
+      visibility: hidden;
+    }
+  
+  </style>
+
+  <body>
+    <hr />
+    <form action="#" method="#">
+      <div class="container d-flex">
+        <div class="d-flex flex-column">
+          <div class="col-8">
+            <label for="numero_transporteur" class="fs-6 fw-normal"
+              >shippingbo</label
+            >
+            <input
+              type="file"
+              class="form-control"
+              id="files"
+              nme="files"
+              accept=".csv"
+            />
+          </div>
+
+          <div class="col-8">
+            <label for="numero_shippingbo" class="fs-6 fw-normal"
+              >Choisir numéro commande shippingbo</label
+            >
+            <select
+              id="numero_shippingbo"
+              class="form-select"
+              aria-label="Default select example"
+            >
+              <option>--Choisisez un numéro commande shippingbo--</option>
+            </select>
+          </div>
+          <br />
+          <div class="col-8">
+            <label for="poids_shippingbo" class="fs-6 fw-normal"
+              >Choisir poids shippingbo</label
+            >
+            <select
+              id="poids_shippingbo"
+              class="form-select"
+              aria-label="Default select example"
+            >
+              <option>--Choisisez un poids shippingbo--</option>
+            </select>
+            <br />
+          </div>
+        </div>
+        <div class="d-flex flex-column">
+          <div class="col-8">
+            <label for="numero_transporteur" class="fs-6 fw-normal"
+              >le transporteur</label
+            >
+            <input
+              type="file"
+              class="form-control"
+              id="files1"
+              nme="files1"
+              accept=".csv"
+            />
+            <br />
+          </div>
+          <div class="col-8">
+            <label for="numero_transporteur" class="fs-6 fw-normal"
+              >Choisir numéro commande transporteur</label
+            >
+            <select
+              id="numero_transporteur"
+              class="form-select"
+              aria-label="Default select example"
+            >
+              <option>--Choisisez un numéro commande transporteur--</option>
+            </select>
+            <br />
+          </div>
+          <div class="col-8">
+            <label for="poids_transporteur" class="fs-6 fw-normal"
+              >Choisir poids transporteur</label
+            >
+            <select
+              id="poids_transporteur"
+              class="form-select"
+              aria-label="Default select example"
+            >
+              <option>--Choisisez un poids transporteur--</option>
+            </select>
+          </div>
+
+          <div class="col-8 d-flex justify-content-end mt-3">
+
+            <div class="me-2">
+            
+              <button type="reset" id="reset"  class="btn btn-secondary">Reset</button> <br />
+            </div>
+            <div>
+              <button
+                type="submit"
+                class="btn btn-outline-success btnaccess fst-italic"
+                id="submit"
+              >
+                valider
+              </button>
+            </div>
+  
+          </div>
+        </div>
+
+        <!------------------------------------------->
+        <div class="card" style="width: 25rem">
+          <div class="card-body">
+            <h5 class="card-title">Note</h5>
+          
+            <table id="table2" style="width: 22rem">
+                <tbody id="table2_body"></tbody>
+              </table>
+            
+          </div>
+          <input type="file" id="files3" nme="files3" accept=".csv" /> <br />
+        </div>
+        <!------------------------------------------->
+      </div>
+      <hr />
+
+      <br />
+      <br /><br />
+
+      <br />
+      
+      
+      <br />
+      <br />
+
+
+      <article class="match">
+        <p id="error">Aucune correspondance trouvée</p>
+    </article>
+    <article class="match">
+      <div id="content">
+
+        
+        
+        <!--btn telecharger-->
+        <div   class="d-flex justify-content-start">
+          
+          
+          
+          <div class="me-2">
+            
+            <button type="submit" class="btn btn-info" id="clearTableau">
+              Clear Tableau
+            </button>
+          </div>
+          <div id="btn">
+            <a href="" class="btn btn-primary">Telecharger</a>
+            
+          </div>
+          
+          
+        </div>
+        
+        
+
+      
+      
+      <table id="table">
+      
+        </table>
+        
+        <section >
+          
+        <table id="table4">
+          <div >
+            <h2 >Différences de poids</h2>
+          </div>
+    
+        <thead>
+          <tr>
+            <th>Numéro de commande</th>
+            <th>Poids Shippingbo</th>
+            <th>Poids Transporteur</th>
+            <th>Différences de poids</th>
+          </tr>
+        </thead>
+      </table>
+      
+      <table id="table3">
+        <div >
+          <h2 >Les poids correspondent</h2>
+        </div>
+        <thead>
+          <tr>
+            <th>Numéro de commande</th>
+            <th>Poids Shippingbo</th>
+            <th>Poids Transporteur</th>
+          </tr>
+        </thead>
+      </table>
+    </article>
+  </section>
+    </div>
+   
+    </form>
+
+    <!-- Ci-dessous le CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"
+      integrity="sha512-SGWgwwRA8xZgEoKiex3UubkSkV1zSE1BS6O4pXcaxcNtUlQsOmOmhVnDwIvqGRfEmuz83tIGL13cXMZn6upPyg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      
+      let poids_shippingbo = document.querySelector("#poids_shippingbo");
+      let numero_transporteur = document.querySelector("#numero_transporteur");
+      let poids_transporteur = document.querySelector("#poids_transporteur");
+
+      let idShippingbo = document.querySelector("#idShippingbo");
+      let poidsShippingbo = document.querySelector("#poidsShippingbo");
+      let recupColonneOrder = document.querySelector("#recupColonneOrder");
+      let numColonne = document.querySelector("#recupColonne");
+
+      let btn = document.getElementById("submit");
+      let aze = document.getElementById("files1");
+      let csvColonnes = document.getElementById("files3");
+      let clearTableau = document.getElementById("clearTableau");
+
+      let reset=document.getElementById("reset");
+      let tableCsvColonne = document.getElementById("table2_body");
+      let tableCsvColonneTotal = document.getElementById("table2");
+      let table3 = document.getElementById("table3");
+      
+      let content =document.getElementById("content");
+      let card_numero_shippingbo = document.querySelector(".shippingbo");
+      ///VARIABLE GLOBAL
+      let stockDatas;
+      let stockDatas2;
+      let data = [];
+      let totalDuPoidsCorrespondancesId = 0;
+      let exporeCSV = [];
+      let poidsTotal = null;
+      let noCorrespondance = true;
+      let noPoids = false;
+      let match = document.querySelectorAll(".match");
+      
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///rafraichir la page avec le btn "reset"
+///////////////////////////////////////////////////////////////////////////////////////////////
+    reset.addEventListener("click",refresh);
+
+
+      function refresh() {
+    location.reload();
+    
+}
+
+
+
+      /////////////////////////////////////////////
+      //clear le tableau 
+      ///////////////////////////////////////////
+      clearTableau.addEventListener("click", (e) => {
+        e.preventDefault;
+        
+        let tbody = document.querySelectorAll("tbody")
+    for (let i = 0; i < tbody.length; i++) {
+        tbody[i].parentNode.removeChild(tbody[i]);     
+        }
+        content.style.visibility="hidden";
+      
+        
+      });
+
+      
+
+      csvColonnes.addEventListener("change", (e) => {
+        e.preventDefault();
+        let url = "";
+        Papa.parse(document.getElementById("files3").files[0], {
+          download: true,
+          Header: false,
+          skipEmptyLines: true,
+          encoding: "ASCII",
+          encoding: "UTF-8",
+          complete: function (results) {
+            console.log(results.data);
+            afficherCsvColonnes(results.data);
+          },
+        });
+      });
+
+      aze.addEventListener("change", (e) => {
+        e.preventDefault();
+        //premiere verification
+        Papa.parse(document.getElementById("files").files[0], {
+          download: true,
+          Header: false,
+          skipEmptyLines: true,
+          encoding: "ASCII",
+          encoding: "UTF-8",
+          complete: function (results) {
+            // console.log(results);
+            let a = 0;
+            results.data.map((data, index) => {
+              // console.log(data);
+            });
+            // deuxieme verification
+            Papa.parse(document.getElementById("files1").files[0], {
+              download: true,
+              Header: false,
+              skipEmptyLines: true,
+              encoding: "ASCII",
+              encoding: "UTF-8",
+              complete: function (results1) {
+                // console.log(results1);
+                // console.log(results.data[0],results1.data[0]);
+                selected(results.data[0], results1.data[0]);
+                stockDatas = results.data;
+                stockDatas2 = results1.data;
+              },
+            });
+          },
+        });
+      });
+
+      function commaToDot(poids) {
+        return parseFloat((poids + "").replace(",", "."));
+      }
+
+      function Afficher3(
+        idShippingbo,
+        poidsShippingbo,
+        totalDuPoidsCorrespondancesId
+      ) {
+      
+        
+
+content.style.visibility="visible";
+
+        let body = table3.createTBody();
+        let rowBody = body.insertRow();
+        let td = document.createElement("td");
+        let td2 = document.createElement("td");
+        let td3 = document.createElement("td");
+        td.append(idShippingbo);
+        td2.append(poidsShippingbo);
+        td3.append(totalDuPoidsCorrespondancesId);
+        rowBody.append(td, td2, td3);
+      }
+
+
+
+
+
+      /////////////////////////////////////////////////////////
+     //   EXPORTER FICHIER SCV
+   ////////////////////////////////////////////////////      
+
+            let  link = document.getElementsByTagName("a")[0];
+            
+            link.addEventListener("click", telecharger);
+
+            function telecharger(){
+              let csvContent =
+                "data:text/csv;charset=utf-8," +
+                data.map((e) => e.join(",")).join("\n");
+                var encodedUri = encodeURI(csvContent);
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "mon_fichier.csv");
+                //  link.click();
+                console.log(data);
+            }
+          
+            
+    
+    /////////////////////////////////////////////////////////////
+
+      function Afficher4(idShippingbo,poidsShippingbo,totalDuPoidsCorrespondancesId,difference) {
+
+
+        
+
+content.style.visibility="visible";
+
+        
+        for (let i = 0; i < exporeCSV.length; i += 4) {
+          data.push(exporeCSV.slice(i, i + 4));
+        }
+      
+
+        let table4 = document.getElementById("table4");
+      
+        let body = table4.createTBody();
+        let rowBody = body.insertRow();
+        let td = document.createElement("td");
+        let td2 = document.createElement("td");
+        let td3 = document.createElement("td");
+        let td4 = document.createElement("td");
+        td.append(idShippingbo);
+        td2.append(poidsShippingbo);
+        td3.append(totalDuPoidsCorrespondancesId);
+        td4.append(difference);
+        rowBody.append(td, td2, td3, td4);
+      }
+
+      function afficherCsvColonnes(results_data) {
+        results_data.map((data, index) => {
+          let rowBody = tableCsvColonne.insertRow();
+          data.map((element, index) => {
+            let td = document.createElement("td");
+            td.append(element);
+            rowBody.append(td);
+          });
+        });
+      }
+
+      function selected(resultsShippingbo, resultsTransporteur) {
+        //console.log(resultsShippingbo, resultsTransporteur);
+        resultsShippingbo.forEach((element, index) => {
+          let numeroShip = document.createElement("option");
+          numeroShip.setAttribute("value", index + 1);
+          let txt = document.createTextNode(element);
+          numeroShip.append(txt);
+          numero_shippingbo.append(numeroShip);
+        });
+
+        resultsShippingbo.forEach((element, index) => {
+          let numeroShip = document.createElement("option");
+          numeroShip.setAttribute("value", index + 1);
+          let txt = document.createTextNode(element);
+          numeroShip.append(txt);
+          poids_shippingbo.append(numeroShip);
+        });
+
+        resultsTransporteur.forEach((element, index) => {
+          let numeroShip = document.createElement("option");
+          numeroShip.setAttribute("value", index + 1);
+          let txt = document.createTextNode(element);
+          numeroShip.append(txt);
+          numero_transporteur.append(numeroShip);
+        });
+
+        resultsTransporteur.forEach((element, index) => {
+          let numeroShip = document.createElement("option");
+          numeroShip.setAttribute("value", index + 1);
+          let txt = document.createTextNode(element);
+          numeroShip.append(txt);
+          poids_transporteur.append(numeroShip);
+        });
+      }
+
+      var david, arnaud, quentin, dominique;
+
+      numero_shippingbo.addEventListener("change", function (e) {
+        // console.log(e.target.value);
+        david = e.target.value;
+      });
+
+      poids_shippingbo.addEventListener("change", function (e) {
+        // console.log(e.target.value);
+        arnaud = e.target.value;
+      });
+
+      numero_transporteur.addEventListener("change", function (e) {
+        // console.log(e.target.value);
+        quentin = e.target.value;
+      });
+
+      poids_transporteur.addEventListener("change", function (e) {
+        // console.log(e.target.value);
+        dominique = e.target.value;
+      });
+
+      function heardArray(david,arnault,quentin,dominique){
+        data=[[numero_shippingbo[david].innerText,numero_shippingbo[arnault].innerText,
+        numero_transporteur[quentin].innerText,poids_transporteur[dominique].innerText]];
+        console.log(data);
+      }
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        check3(stockDatas, stockDatas2, david, arnaud, quentin, dominique);
+      });
+
+      let value=true;
+
+      function check3(csvShippingbo, csvGls, david, arnaud,quentin,dominique) {
+        // console.log(csvShippingbo);
+        // console.log(csvGls);
+        heardArray(david, arnaud,quentin,dominique);
+        let idShippingboValide = parseInt(david) - 1;
+        let poidsShippingboValide = parseInt(arnaud) - 1;
+        let recupColonneOrderValide = parseInt(quentin) - 1;
+        let numColonneValide = parseInt(dominique) - 1;
+        // console.log(idShippingboValide, poidsShippingboValide, recupColonneOrderValide, numColonneValide);
+        for (let i = 0; i < csvShippingbo.length; i++) {
+          // console.log('test2'+csvShippingbo);
+          let idShippingbo = csvShippingbo[i][idShippingboValide];
+          let poidsShippingbo = parseFloat(
+            csvShippingbo[i][poidsShippingboValide]
+          );
+          totalDuPoidsCorrespondancesId = 0;
+          // console.log(idShippingbo);
+          // console.log(poidsShippingbo);
+          let idGls;
+          for (let j = 0; j < csvGls.length; j++) {
+            idGls = csvGls[j][recupColonneOrderValide];
+            let poidsGls = parseFloat(commaToDot(csvGls[j][numColonneValide])) * 1000;
+            // console.log(poidsGls);
+            // console.log(idGls);
+            if (idShippingbo == idGls) {
+              noCorrespondance = false
+              totalDuPoidsCorrespondancesId += poidsGls;
+              poidsTotal += totalDuPoidsCorrespondancesId;
+            } else if (idShippingbo != idGls) {
+              totalDuPoidsCorrespondancesId += 0;
+            }
+          }
+          if (
+            totalDuPoidsCorrespondancesId == poidsShippingbo &&
+            totalDuPoidsCorrespondancesId != 0
+          ) {
+            Afficher3(
+              idShippingbo,
+              poidsShippingbo,
+              totalDuPoidsCorrespondancesId
+            );
+          } else if (
+            totalDuPoidsCorrespondancesId != poidsShippingbo &&
+            totalDuPoidsCorrespondancesId != 0
+          ) {
+                value=false;
+              let difference = poidsShippingbo - totalDuPoidsCorrespondancesId;
+              Afficher4(
+                  idShippingbo,
+                  poidsShippingbo,
+                  totalDuPoidsCorrespondancesId,
+                  difference
+                  );
+                  exporeCSV.push(
+                      idShippingbo,
+                      poidsShippingbo,
+                      totalDuPoidsCorrespondancesId,
+                      difference
+                      );
+                    
+        
+                    }
+                
+    
+        }
+        if (isNaN(poidsTotal)){
+            noPoids = true;
+        }else{
+            noPoids = false;
+        }
+        console.log(noPoids)
+        if (noCorrespondance == false && noPoids == false){ //afficher tableau
+            match[1].classList.replace("match", "match-active");
+            match[0].classList.replace("match-active", "match");
+        }else if(noCorrespondance == true || noPoids== true){ //afficher erreur
+            match[0].classList.replace("match","match-active");
+            match[1].classList.replace("match-active","match");
+        }
+        poidsTotal = null;
+      }
+  
+
+
+      th = document.getElementsByTagName("th");
+
+      for (let c = 0; c < th.length; c++) {
+        th[c].addEventListener("click", item(c));
+      }
+
+      function item(c) {
+        return function () {
+          console.log(c);
+          sortTable(c);
+        };
+      }
+
+      function sortTable(c) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("table4");
+        switching = true;
+        /*Make a loop that will continue until
+            no switching has been done:*/
+        while (switching) {
+          //start by saying: no switching is done:
+          switching = false;
+          rows = table.rows;
+          /*Loop through all table rows (except the
+                first, which contains table headers):*/
+          for (i = 1; i < rows.length - 1; i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+                    one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[c];
+            y = rows[i + 1].getElementsByTagName("TD")[c];
+            //check if the two rows should switch place:
+            if (parseFloat(x.innerHTML) > parseFloat(y.innerHTML)) {
+              //if so, mark as a switch and break the loop:
+              shouldSwitch = true;
+              break;
+            }
+          }
+          if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+                    and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+          }
+        }
+      }
+    </script>
+
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+      }
+
+      td,
+      th {
+        border: 1px solid #cccccc;
+        padding: 8px;
+      }
+
+      th {
+        font-weight: bold;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+
+      tr:hover {
+        background-color: black;
+        color: white;
+      }
+
+      .match{
+          visibility: hidden;
+      }
+      .match-active{
+          visibility: visible;
+      }   
+    </style>
+  </body>
+</html>
